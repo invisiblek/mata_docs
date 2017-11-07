@@ -1,20 +1,6 @@
-.. Essential PH-1 (mata) documentation master file, created by
-   sphinx-quickstart on Mon Nov  6 21:09:55 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to Essential PH-1 (mata)'s documentation!
+Essential PH-1 (mata) FAQ
 =================================================
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+* Bootloader can be unlocked via `fastboot flashing unlock` THIS WILL WIPE YOUR DATA
+* You probaly want to `fastboot flashing unlock_critical` while you're at it. This allows updating firmware partitions through fastboot.
+* The boot partitions on this device (boot_a and boot_b) are not your "traditional" boot partitions. On these, they contain a kernel and ramdisk like you're probably used to, but in this case the ramdisk is actually your recovery. The device uses a "system-as-root" layout where the system partition actually contains what would have been in your ramdisk.
