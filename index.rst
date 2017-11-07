@@ -2,6 +2,7 @@ Essential PH-1 (mata) FAQ
 =================================================
 
 * You want fastboot up and running. Don't even attempt any of this if you don't.
+* Back to stock thread on xda: https://forum.xda-developers.com/essential-phone/development/stock-7-1-1-nmj20d-t3701681
 * Bootloader can be unlocked via ``fastboot flashing unlock`` THIS WILL WIPE YOUR DATA
 * You probably want to ``fastboot flashing unlock_critical`` while you're at it. This allows updating firmware partitions through fastboot.
 * The boot partitions on this device (boot_a and boot_b) are not your "traditional" boot partitions. On these, they contain a kernel and ramdisk like you're probably used to, but in this case the ramdisk is actually your recovery. The device uses a "system-as-root" layout where the system partition actually contains what would have been in your ramdisk.
