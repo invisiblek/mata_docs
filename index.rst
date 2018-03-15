@@ -1,20 +1,187 @@
-Essential PH-1 (mata) FAQ
-=================================================
+.. _header-n4917:
 
-* You want fastboot up and running. Don't even attempt any of this if you don't.
-* Back to stock thread on xda: https://forum.xda-developers.com/essential-phone/development/stock-7-1-1-nmj20d-t3701681
-* If your fingerprint reader stopped working, chances are you have a firmware mismatch. Typically checking your build.prop for the build version and flashing the matching firmware package will fix this. Firmware packages here: https://mega.nz/#F!oK5yWL4L!QDDxwvhePaJZ9hjdZcDvYA
-* Bootloader can be unlocked via ``fastboot flashing unlock`` THIS WILL WIPE YOUR DATA
-* You probably want to ``fastboot flashing unlock_critical`` while you're at it. This allows updating firmware partitions through fastboot.
-* The boot partitions on this device (boot_a and boot_b) are not your "traditional" boot partitions. On these, they contain a kernel and ramdisk like you're probably used to, but in this case the ramdisk is actually your recovery. The device uses a "system-as-root" layout where the system partition actually contains what would have been in your ramdisk.
-* In addition to the "system-as-root" layout, we also have the new A/B partition scheme (as first seen on the Pixel/Pixel XL). This can be quite confusing to users as there are actually two copies of many of the partitions. The idea of "slots" comes in to play to determine which set of partitions you are booting. In our case we have an "a" slot and a "b" slot. To determine which slot you are currently booting, you can issue this command via adb: ``adb shell getprop ro.boot.slot_suffix`` or via fastboot: ``fastboot getvar current-slot``. This slot can be changed via fastboot: ``fastboot set_active [a,b]`` or swapped to the non-current slot via: ``fastboot set_active other``. The whole idea behind this is to allow for seamless system upgrades. Android can update the non-current slot while booted, then tell the system to boot to the other slot once the update successfully completes. This does a couple things for us: prevents the user from staring at a boot animation forever, since we can dexopt before reboot. It also prevents creating a non-booting system caused by a flash failure because if it fails the target partition won't be marked as bootable and therefore a reboot would keep the user on the current, working, slot.
-* LineageOS builds by invisiblek can be found here: https://updater.invisiblek.org/mata  More info and instructions here: https://goo.gl/hZKdTH
-* TWRP can be downloaded from here: https://goo.gl/BRpaci  Flash it to the `boot` partition with fastboot.
-* If you move data between devices or change encryption and after restoring data from a twrp backup, you end up without a working fingerprint reader, delete ``/data/system/users/0/fpdata`` and ``/data/system/users/0/settings_fingerprint.xml`` then you should be able to re-enroll fingerprints
-* The most common issue you'll run in to when backing up and restoring is a failed boot upon restoring. This is usually caused by the fact that you had to flash TWRP in order to get in to TWRP, therefore when you did your backup, it actually backed up the TWRP install instead of your ROM's boot.img and the kernel included with TWRP isn't capable of booting your rom. To mitigate this, I'd recommend swapping slots BEFORE flashing and booting into TWRP, so that you're on your non-booting slot ``fastboot set_active other`` will switch slots for you. Then, when you get to TWRP, go to the reboot menu, change to the other slot, then perform your backup. This will ensure that it backs up your ROM properly.
-* Make sure you always decrypt your data in TWRP before backing up. It's unlikely backing up the encrypted FDE data is viable to restore. TWRP has an option to encrypt the data that is backed up, so if you typically wear a tinfoil hat, you should check that box when you back up.
-* If you get an error about ``ExtractTarFork()`` its possible (probable?) you have a problem with crypto. It's likely that what is currently on your device is different or unhappy with how things were backed up. The best way I've found to fix this is to peform a data wipe in fastboot via ``fastboot -w``, then boot into your ROM (with clean data), go through the setup wizard and set a lockscreen password/pin (preferably matching what you had before), then reboot into twrp and restore data.
-* Firmware between N and O are very finnicky when it comes to crypto. I'm not even sure I've even wrapped my head around all the ins and outs of O crypto yet. If you're backing up/restoring with O firmware, as of the time this was written (2017-11-22) you're on your own.
-* Flashing magisk after a rom is a bit of a problem. The official magisk zip ends up installing it to the currently booted slot. Typically though, you'd want to be installing it to the other slot after flashing a ROM zip, since that's where the rom has been installed. I've made a hacked magisk zip that forces the flash to go to the opposite slot that you are booted to in order to alleviate this headache: https://download.invisiblek.org/magisk_14.3_invisiblekhax.zip Flash this after flashing your rom while you're still in TWRP.
-* Clearing the red verity message that requires you to hit the power button to boot can be done by fastboot flashing this boot.img: https://download.invisiblek.org/mata/boot.fix.red.img That image will reboot over and over again (you'll never get anywhere) but when it does, it'll clear out that annoying red error. After flashing it, boot normally once. You'll still get the red error but it will be cleared upon its first reboot.
-* Some day you may end up with a firmware that doesn't play well with twrp. Either no touch screen, or no data decryption. One quick way to flash a zip in this situation is to put the device in sideload mode via an adb command: ``adb shell twrp sideload`` then issue a normal adb sideload command with your zip as a paramter: ``adb sideload myawesomezip.zip``
+Installation
+============
+
+Prerequisites:
+
+-  You want fastboot up and running. Don’t even attempt any of this if
+   you don’t.
+
+-  Unlocked Bootloader and Critical Partitions
+
+.. _header-n4928:
+
+Unlocking the Bootloader
+========================
+
+-  Bootloader can be unlocked via ``fastboot flashing unlock`` THIS WILL
+   WIPE YOUR DATA
+
+-  You probably want to ``fastboot flashing unlock_critical`` while
+   you’re at it. This allows updating firmware partitions through
+   fastboot.
+
+.. _header-n4936:
+
+Working with A/B Partitioning
+=============================
+
+The boot two partitions on this device, named ``boot_a`` and ``boot_b``
+respectively, are not your “traditional” boot partitions. Both of these
+partitions contain a kernel and ramdisk like you are probably used to.
+The difference is that now the ramdisk is now your recovery. This device
+uses a "system-as-root" layout, with which the system partition now
+contains what would have been the ramdisk.
+
+The A/B partitioning scheme can be quite confusing to users. There are
+actually two copies of many of the partitions
+
+.. _header-n4941:
+
+Slots
+-----
+
+The concept of 'slots' comes into play to determine whether you are
+booting 'slot A' or 'slot B'. We can determine which slot is 'active' or
+marked for booting via adb:
+
+.. code:: 
+
+    adb shell getprop ro.boot.slot_suffix
+
+and via fastboot:
+
+.. code:: 
+
+    fastboot getvar current-slot
+
+At any time we can switch to the next inactive slot using:
+
+ ``fastboot set_active other``, or we can use:
+
+ ``fastboot set_active [a,b]``, to manually switch to a specified slot.
+
+The slots are designed to enable seamless system upgrades. Android can
+install an update to the inactive slot while it is still running. Once
+the update is completed, and optimized, Android will tell the system to
+switch to the slot that was upgraded. This means, unless tampered with,
+one slot will always be one version behind.
+
+A/B Partitioning not only reduces 'first boot' time by performing dexopt
+*before* rebooting, it also prevents boot failures from failed updates.
+If Android fails to boot it will switch *back* to the previous slot so
+that the next reboot will be back on the current, working, slot.
+
+.. _header-n4958:
+
+Installing LineageOS
+====================
+
+You will need to flash TWRP, which can be found here:
+https://goo.gl/BRpaci Flash it to the **boot** partition with fastboot.
+
+Invisiblek's Lineage builds can be found here:
+https://updater.invisiblek.org/mata
+
+This is flashed the normal way through TWRP. More info and instructions
+here: https://goo.gl/hZKdTH
+
+.. _header-n4965:
+
+Common Issues
+=============
+
+**Fingerprint Scanner Stopped Working**
+
+Chances are you have a firmware mismatch. Typically checking your
+build.prop for the build version and flashing the matching firmware
+package will fix this.
+
+ Firmware packages here:
+https://mega.nz/#F!oK5yWL4L!QDDxwvhePaJZ9hjdZcDvYA
+
+If you move data between devices or change encryption. You may end up
+with a nonworking fingerprint scanner after restoring data from a twrp
+backup. If this occurs, you can flush the recorded fingerprint data by
+deleting ``/data/system/users/0/fpdata`` and
+``/data/system/users/0/settings_fingerprint.xml``. You should now be
+able to re-enroll your fingerprints.
+
+**I Cant Boot After Restoring a Backup**
+
+This is usually caused by the fact that you had to flash TWRP in order
+to get in to TWRP therefore when you did your backup, it actually backed
+up the TWRP install instead of your ROM’s boot.img. The kernel included
+with TWRP cannot boot Android.
+
+I recommend swapping slots **before** flashing and booting into TWRP.
+This will flash twrp onto your older, non-booting, slot.
+``fastboot set_active other`` will switch slots for you.
+
+Once you get to TWRP, go to the reboot menu, change to the other
+(original) slot, and finally perform your backup. Make sure you always
+decrypt your data, in TWRP, **before** backing up. It’s unlikely backing
+up the encrypted FDE data is viable to restore. (Tinfoilers can always
+encrypt the twrp backup that is generated with the check of a box)
+
+**No Touch in TWRP**
+
+Some day you may end up with a firmware that doesn’t play well with
+twrp. Either no touch screen, or no data decryption.
+
+One quick way to flash a zip in this situation is to put the device in
+sideload mode via an adb command: ``adb shell twrp sideload`` then flash
+your zip using adb sideload:
+
+ ``adb sideload myawesomezip.zip``
+
+**Broken Crypto**
+
+If you get an error about ``ExtractTarFork()`` its plausible that you
+have a problem with crypto. It is likely that what is currently on your
+device is unhappy with how things were backed up.
+
+The best way I’ve found to fix this is to perform a data wipe in
+fastboot via ``fastboot -w``, then boot into your ROM (with clean data),
+go through the setup wizard and set a lockscreen password/pin
+(preferably matching what you had before), then reboot into twrp and
+restoring your data.
+
+Firmware between N and O are finicky when it comes to crypto. I’m not
+even sure I’ve even wrapped my head around all the ins and outs of
+Oreo's crypto yet. If you’re backing up/restoring with O firmware, as of
+(2017-11-22) you’re on your own.
+
+**Magisk**
+
+Flashing magisk after a rom is a bit of a problem. The official magisk
+zip ends up installing it to the currently booted slot. Typically
+though, you’d want to be installing it to the inactive slot after
+flashing a ROM zip (and thus switching to the slot the rom was installed
+to).
+
+I’ve made a hacked magisk zip that forces the flash to go to the
+opposite slot that you are booted to in order to alleviate this
+headache: https://download.invisiblek.org/magisk_14.3_invisiblekhax.zip
+
+Flash this after flashing your rom while you’re still in TWRP.
+
+**Removing the Red Verity Warning**
+
+The red verity message that appears on modified systems and requires you
+to hit the power button to boot can be cleared by fastboot flashing this
+boot.img: https://download.invisiblek.org/mata/boot.fix.red.img
+
+That image will reboot over and over again (you’ll never get anywhere)
+but when it does, it’ll clear out that annoying red error. After
+flashing it, boot normally once. You will still get the red error but it
+will be cleared at the next reboot.
+
+.. _header-n5013:
+
+Back to Stock
+=============
+
+There is a tutorial on xda here:
+https://forum.xda-developers.com/essential-phone/development/stock-7-1-1-nmj20d-t3701681
