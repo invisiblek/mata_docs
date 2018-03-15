@@ -27,10 +27,10 @@ Unlocking the Bootloader
 Working with A/B Partitioning
 =============================
 
-They boot two partitions on this device, named ``boot_a`` and ``boot_b``
+The two boot partitions on this device, named ``boot_a`` and ``boot_b``
 respectively, are not your “traditional” boot partitions. Both of these
 partitions contain a kernel and ramdisk like you are probably used to.
-The difference is that now the ramdisk is now your recovery. This device
+The difference is that the ramdisk is now your recovery. This device
 uses a "system-as-root" layout, with which the system partition now
 contains what would have been the ramdisk.
 
@@ -98,8 +98,7 @@ Chances are you have a firmware mismatch. Typically checking your
 build.prop for the build version and flashing the matching firmware
 package will fix this.
 
- Firmware packages here:
-https://mega.nz/#F!oK5yWL4L!QDDxwvhePaJZ9hjdZcDvYA
+ Firmware packages here: https://goo.gl/V6ExUf
 
 If you move data between devices or change encryption. You may end up
 with a nonworking fingerprint scanner after restoring data from a twrp
@@ -111,7 +110,7 @@ able to re-enroll your fingerprints.
 **I Cant Boot After Restoring a Backup**
 
 This is usually caused by the fact that you had to flash TWRP in order
-to get in to TWRP therefore when you did your backup, it actually backed
+to get in to TWRP. Therefore, when you did your backup, it actually backed
 up the TWRP install instead of your ROM’s boot.img. The kernel included
 with TWRP cannot boot Android.
 
