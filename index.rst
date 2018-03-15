@@ -1,4 +1,4 @@
-.. _header-n4917:
+.. _header-n5872:
 
 Installation
 ============
@@ -10,7 +10,7 @@ Prerequisites:
 
 -  Unlocked Bootloader and Critical Partitions
 
-.. _header-n4928:
+.. _header-n5883:
 
 Unlocking the Bootloader
 ========================
@@ -18,11 +18,11 @@ Unlocking the Bootloader
 -  Bootloader can be unlocked via ``fastboot flashing unlock`` THIS WILL
    WIPE YOUR DATA
 
--  You probably want to ``fastboot flashing unlock_critical`` while
-   you’re at it. This allows updating firmware partitions through
-   fastboot.
+-  It is important you also ``fastboot flashing unlock_critical``. This
+   allows updating firmware partitions through fastboot. Failure to do
+   so has caused issues for users attempting to revert to stock.
 
-.. _header-n4936:
+.. _header-n5891:
 
 Working with A/B Partitioning
 =============================
@@ -37,7 +37,7 @@ contains what would have been the ramdisk.
 The A/B partitioning scheme can be quite confusing to users. There are
 actually two copies of many of the partitions
 
-.. _header-n4941:
+.. _header-n5896:
 
 Slots
 -----
@@ -73,13 +73,13 @@ A/B Partitioning not only reduces 'first boot' time by performing dexopt
 If Android fails to boot it will switch *back* to the previous slot so
 that the next reboot will be back on the current, working, slot.
 
-.. _header-n4958:
+.. _header-n5913:
 
 Installing LineageOS
 ====================
 
-You will need to flash TWRP, which can be found here:
-https://goo.gl/BRpaci Flash it to the **boot** partition with fastboot.
+You will need to flash TWRP, the latest can be found here:
+https://goo.gl/zruWHi Flash it to the **boot** partition with fastboot.
 
 Invisiblek's Lineage builds can be found here:
 https://updater.invisiblek.org/mata
@@ -87,7 +87,7 @@ https://updater.invisiblek.org/mata
 This is flashed the normal way through TWRP. More info and instructions
 here: https://goo.gl/hZKdTH
 
-.. _header-n4965:
+.. _header-n5920:
 
 Common Issues
 =============
@@ -163,7 +163,7 @@ to).
 
 I’ve made a hacked magisk zip that forces the flash to go to the
 opposite slot that you are booted to in order to alleviate this
-headache: https://download.invisiblek.org/magisk_14.3_invisiblekhax.zip
+headache: https://invisiblek.org/magisk/magisk_15.2_invisiblekhax.zip
 
 Flash this after flashing your rom while you’re still in TWRP.
 
@@ -178,7 +178,7 @@ but when it does, it’ll clear out that annoying red error. After
 flashing it, boot normally once. You will still get the red error but it
 will be cleared at the next reboot.
 
-.. _header-n5013:
+.. _header-n5968:
 
 Back to Stock
 =============
