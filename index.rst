@@ -27,7 +27,7 @@ Unlocking the Bootloader
 Working with A/B Partitioning
 =============================
 
-The boot two partitions on this device, named ``boot_a`` and ``boot_b``
+They boot two partitions on this device, named ``boot_a`` and ``boot_b``
 respectively, are not your “traditional” boot partitions. Both of these
 partitions contain a kernel and ramdisk like you are probably used to.
 The difference is that now the ramdisk is now your recovery. This device
