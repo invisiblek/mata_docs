@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 Installation
 ============
 
@@ -373,4 +373,3 @@ Back to Stock
 
 There is a tutorial on xda here:
 https://forum.xda-developers.com/essential-phone/development/stock-7-1-1-nmj20d-t3701681
->>>>>>> 51bdcb62e2f513f98205bf955a7ae642daa95b3a
