@@ -71,7 +71,7 @@ Installing LineageOS
 ====================
 
 You will need to flash TWRP, the latest can be found here:
-https://goo.gl/zruWHi Flash it to the **boot** partition with fastboot.
+https://gg.gg/9ubmn Flash it to the **boot** partition with fastboot.
 
 Invisiblek's Lineage builds can be found here:
 
@@ -80,7 +80,7 @@ https://updater.invisiblek.org/mata
 Roms are flashed the normal way through TWRP. More info and instructions
 here:
 
-https://goo.gl/hZKdTH
+https://gg.gg/9ubmz
 
 **Note:** If you are changing roms you likely broke encryption and
 *will* bootloop until you ``fastboot -w``
