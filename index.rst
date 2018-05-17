@@ -95,7 +95,7 @@ Chances are you have a firmware mismatch. Typically checking your
 build.prop for the build version and flashing the matching firmware
 package will fix this.
 
- Firmware packages here: https://goo.gl/V6ExUf
+ Firmware packages here: https://gg.gg/9ubnb
 
 If you move data between devices or change encryption. You may end up
 with a nonworking fingerprint scanner after restoring data from a twrp
