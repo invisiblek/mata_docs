@@ -73,9 +73,9 @@ Installing LineageOS
 You will need to flash TWRP, the latest can be found here:
 https://gg.gg/9ubmn Flash it to the **boot** partition with fastboot.
 
-Invisiblek's Lineage builds can be found here:
+invisiblek's Lineage builds can be found here:
 
-https://updater.invisiblek.org/mata
+http://gg.gg/ai7lc
 
 Roms are flashed the normal way through TWRP. More info and instructions
 here:
@@ -161,10 +161,9 @@ though, you’d want to be installing it to the inactive slot after
 flashing a ROM zip (and thus switching to the slot the rom was installed
 to).
 
-I’ve made a hacked magisk zip that forces the flash to go to the
+I’ve made hacked magisk zips that forces the flash to go to the
 opposite slot that you are booted to in order to alleviate this
-headache:
-https://invisiblek.org/magisk/magisk\ *15.2*\ invisiblekhax.zip
+headache: http://gg.gg/ai7l4
 
 Flash this after flashing your rom while you’re still in TWRP.
 
@@ -173,16 +172,16 @@ Removing the Red Verity Warning
 
 The red verity message that appears on modified systems and requires you
 to hit the power button to boot can be cleared by fastboot flashing this
-boot.img: https://download.invisiblek.org/mata/boot.fix.red.img
+boot.img: http://gg.gg/ai7m1
 
 That image will reboot over and over again (you’ll never get anywhere)
 but when it does, it’ll clear out that annoying red error. After
 flashing it, boot normally once. You will still get the red error but it
 will be cleared it the next reboot.
 
+Here's a link to the patch that is included to perform this: http://gg.gg/ai7kb
+
 Back to Stock
 =============
 
-There is a tutorial on xda here:
-https://forum.xda-developers.com/essential-phone/development/stock-7-1-1-nmj20d-t3701681
-
+There is a tutorial on xda here: http://gg.gg/ai7ke
