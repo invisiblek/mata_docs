@@ -194,7 +194,7 @@ Invisiblek's Los has some hidden customizations that are made available through 
 Add columns to QuickSettings
 ----------------------------
 
-The number of columns are changed using the command ``setprop persist.qs_columns``
+The number of columns are changed using the command ``setprop persist.qs_columns`` as ``adb root``
 
 For example, if you wanted four Quick Settings columns you can run:
 
