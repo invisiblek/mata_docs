@@ -197,6 +197,7 @@ Add columns to QuickSettings
 The number of columns are changed using the command ``setprop persist.qs_columns``
 
 For example, if you wanted four Quick Settings columns you can run:
+
 .. code::
     setprop persist.qs_columns 4
 
