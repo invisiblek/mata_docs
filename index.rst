@@ -214,7 +214,7 @@ In this example we will be setting the system dns server too Cloudflare's DNS ``
 .. code::
 
     adb root # you must first have root
-    adb shell "echo 'net.rmnet_data2.user_dns1=1.1.1.1; >> /data/local.prop"
+    adb shell "echo 'net.rmnet_data2.user_dns1=1.1.1.1' >> /data/local.prop"
     adb shell "echo 'net.rmnet_data2.user_dns2=1.0.0.1' >> /data/local.prop"
     adb shell chmod 600 /data/local.prop # make local.prop rw for the current owner
     adb reboot
