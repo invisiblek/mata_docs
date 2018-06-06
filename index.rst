@@ -199,6 +199,7 @@ The number of columns are changed using the command ``setprop persist.qs_columns
 For example, if you wanted four Quick Settings columns you can run:
 
 .. code::
+
     setprop persist.qs_columns 4
 
 The default value is 3.
@@ -211,14 +212,11 @@ It may be desirable for the user to use a DNS server other than Google's. Prior 
 In this example we will be setting the system dns server too Cloudflare's DNS ``1.1.1.1``, ``1.0.0.1``:
 
 .. code::
+
     adb root # you must first have root
-
     adb shell "echo 'net.rmnet_data2.user_dns1=1.1.1.1; >> /data/local.prop"
-
     adb shell "echo 'net.rmnet_data2.user_dns2=1.0.0.1' >> /data/local.prop"
-
     adb shell chmod 600 /data/local.prop # make local.prop rw for the current owner
-
     adb reboot
 
 Source: http://gg.gg/mataDNS
