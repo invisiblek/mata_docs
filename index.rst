@@ -207,7 +207,7 @@ The default value is 3.
 Change the System DNS Server
 ----------------------------
 
-It may be desirable for the user to use a DNS server other than Google's. Prior to Android P this is easily done. Invisiblek demonstrates that you can make this change by echo'ing the changes to ``/data/local.prop`` from adb shell. You will need to be root for this.
+It may be desirable for the user to use a DNS server other than Google's. Prior to Android P this is not easily done. Invisiblek demonstrates that you can make this change by echo'ing the changes to ``/data/local.prop`` from adb shell. You will need to be root for this.
 
 In this example we will be setting the system dns server too Cloudflare's DNS ``1.1.1.1``, ``1.0.0.1``:
 
