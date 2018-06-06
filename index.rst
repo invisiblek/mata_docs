@@ -185,3 +185,38 @@ Back to Stock
 =============
 
 There is a tutorial on xda here: http://gg.gg/ai7ke
+
+Hidden features
+===============
+
+Invisiblek's Los has some hidden customizations that are made available through adb commands.
+
+Add columns to QuickSettings
+----------------------------
+
+The number of columns are changed using the command ``setprop persist.qs_columns`` as ``adb root``
+
+For example, if you wanted four Quick Settings columns you can run:
+
+.. code::
+
+    setprop persist.qs_columns 4
+
+The default value is 3.
+
+Change the System DNS Server
+----------------------------
+
+It may be desirable for the user to use a DNS server other than Google's. Prior to Android P this is easily done. Invisiblek demonstrates that you can make this change by echo'ing the changes to ``/data/local.prop`` from adb shell. You will need to be root for this.
+
+In this example we will be setting the system dns server too Cloudflare's DNS ``1.1.1.1``, ``1.0.0.1``:
+
+.. code::
+
+    adb root # you must first have root
+    adb shell "echo 'net.rmnet_data2.user_dns1=1.1.1.1; >> /data/local.prop"
+    adb shell "echo 'net.rmnet_data2.user_dns2=1.0.0.1' >> /data/local.prop"
+    adb shell chmod 600 /data/local.prop # make local.prop rw for the current owner
+    adb reboot
+
+Source: http://gg.gg/mataDNS
