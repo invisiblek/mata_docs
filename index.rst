@@ -181,6 +181,18 @@ will be cleared it the next reboot.
 
 Here's a link to the patch that is included to perform this: http://gg.gg/ai7kb
 
+Stock Update Notifications are Still Appearing
+----------------------------------------------
+
+You may still get stock Essential Update notifications even when on a custom rom. This is especially true is you're are one Android Security Bulliten (ASB) release behind. Update notifications can be annoying, and accidental taps can result in the device trying (and failing) to update only to reboot back into the installed custom rom.
+
+These notifications can easily be disabled from Settings.
+
+Browse to ``Settings -> Apps & notifications -> See all <x> apps -> Google Play Services -> App notifications``. 
+
+At the bottom of this page you will see 'System Update'. This will stop you from seeing the stock rom update notifications until you switch roms or wipe data again.
+
+
 Back to Stock
 =============
 
