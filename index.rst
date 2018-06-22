@@ -196,7 +196,7 @@ At the bottom of this page you will see 'System Update'. This will stop you from
 Back to Stock
 =============
 
-There is a tutorial on xda here: http://gg.gg/ai7ke
+There is a tutorial on xda here: http://gg.gg/mataBTS
 
 Hidden features
 ===============
