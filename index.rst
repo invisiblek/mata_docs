@@ -155,17 +155,40 @@ Oreo's crypto yet. If you’re backing up/restoring with O firmware, as of
 Magisk
 ------
 
-Flashing magisk after a rom is a bit of a problem. The official magisk
-zip ends up installing it to the currently booted slot. Typically
-though, you’d want to be installing it to the inactive slot after
-flashing a ROM zip (and thus switching to the slot the rom was installed
-to).
+Requirements:
 
-I’ve made hacked magisk zips that forces the flash to go to the
-opposite slot that you are booted to in order to alleviate this
-headache: http://gg.gg/ai7l4
+- Working Android Tools (fastboot/adb)
+- A copy of your boot.img
+- Magisk 16.4 or greater (16.4 beta is the latest at the time of this writing)
+- The latest version of TWRP_
 
-Flash this after flashing your rom while you’re still in TWRP.
+Getting your boot.img:
+
+- If you are on the stock rom/kernel you may simply use the boot.img the appropriate BTS.zip (http://gg.gg/mataBTS).
+- If you are on Invisiblek's LineageOS builds, he offers a direct download_ of the boot image for 'pinned' builds.
+- If you are using a custom kernel you may simply use it's .zip instead of the boot.img
+- If you are not on a 'pinned' LOS, or you are using something else you will have to `extract your boot.img`__.
+
+.. _download: https://updater2.invisiblek.org/mata/
+.. _boot.img: https://gg.gg/mataBTS/
+.. _TWRP: https://gg.gg/9ubmn/
+
+Note: It is important that you have completed the first time setup in order to Magisk to work. This cannot be applied to a fresh rom.
+Note 2: You must *remove your lockscreen* (be decrypted) in order to complete this procedure. This is so you can access your twrp, magisk, and boot.img from /sdcard later.
+
+Procedure:
+
+If you are unfamiliar with how the slots work flashing magisk can seem cumbersome. This is because magisk patches the boot.img which we are actually replacing with TWRP. Therefore the process will look a bit like this:
+
+Fastboot > flash twrp to active `boot` slot > boot twrp > flash boot.img to active `boot` slot > flash magisk to active `boot` slot.
+
+- Before you reboot into fastboot to begin the process, make sure you have the required files on `/sdcard`.
+- Reboot into fastboot, take note of your active slot, and flash twrp
+- Reboot into recovery from fastboot
+- Using TWRP, flash your boot.img to your `active` slot just like you would a rom. (If your boot is a raw boot.img, you must switch twrp into image mode from the 'choose zip' screen)
+- Flash magisk *on top* of your boot.img in your active slot
+
+You have now just patched the boot.img you flashed ontop of TWRP and your ROM should be able to boot.
 
 Removing the Red Verity Warning
 -------------------------------
