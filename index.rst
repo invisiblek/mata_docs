@@ -167,7 +167,7 @@ Getting your boot.img:
 - If you are on the stock rom/kernel you may simply use the boot.img the appropriate BTS.zip (http://gg.gg/mataBTS).
 - If you are on Invisiblek's LineageOS builds, he offers a direct download_ of the boot image for 'pinned' builds.
 - If you are using a custom kernel you may simply use it's .zip instead of the boot.img
-- If you are not on a 'pinned' LOS, or you are using something else you will have to `extract your boot.img`__.
+- If you are not on a 'pinned' LOS, or you are using something else you will have to extract your boot.img_.
 
 .. _download: https://updater2.invisiblek.org/mata/
 .. _boot.img: https://gg.gg/mataBTS/
