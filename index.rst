@@ -158,6 +158,7 @@ Magisk
 Requirements:
 
 - Working Android Tools (fastboot/adb)
+- Decrypted `/sdcard` (remove your lockscreen security and reboot)
 - A copy of your boot.img
 - Magisk 16.4 or greater (16.4 beta is the latest at the time of this writing)
 - The latest version of TWRP_
@@ -169,14 +170,14 @@ Getting your boot.img:
 - If you are using a custom kernel you may simply use it's .zip instead of the boot.img
 - If you are not on a 'pinned' LOS, or you are using something else you will have to extract your boot.img_.
 
-.. _download: https://updater2.invisiblek.org/mata/
+.. _download: https://updater2.invisiblek.org/mata
 .. _boot.img: https://gg.gg/mataBTS/
 .. _TWRP: https://gg.gg/9ubmn/
 
-Note: It is important that you have completed the first time setup in order to Magisk to work. This cannot be applied to a fresh rom.
-Note 2: You must *remove your lockscreen* (be decrypted) in order to complete this procedure. This is so you can access your twrp, magisk, and boot.img from /sdcard later.
-
 Procedure:
+
+**Note:** It is important that you have completed the first time setup in order to Magisk to work. This cannot be applied to a fresh rom.
+**Note 2:** You must *remove your lockscreen* (be decrypted) in order to complete this procedure. This is so you can access your twrp, magisk, and boot.img from /sdcard later.
 
 If you are unfamiliar with how the slots work flashing magisk can seem cumbersome. This is because magisk patches the boot.img which we are actually replacing with TWRP. Therefore the process will look a bit like this:
 
