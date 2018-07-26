@@ -174,10 +174,11 @@ Getting your boot.img:
 .. _boot.img: https://gg.gg/mataBTS/
 .. _TWRP: https://gg.gg/9ubmn/
 
-Procedure:
-
 **Note:** It is important that you have completed the first time setup in order to Magisk to work. This cannot be applied to a fresh rom.
+
 **Note 2:** You must *remove your lockscreen* (be decrypted) in order to complete this procedure. This is so you can access your twrp, magisk, and boot.img from /sdcard later.
+
+Procedure:
 
 If you are unfamiliar with how the slots work flashing magisk can seem cumbersome. This is because magisk patches the boot.img which we are actually replacing with TWRP. Therefore the process will look a bit like this:
 
