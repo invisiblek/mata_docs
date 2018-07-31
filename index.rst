@@ -8,6 +8,8 @@ Prerequisites:
 -  You want fastboot up and running. Don’t even attempt any of this if
    you don’t.
 
+-  You will need a cable that *is not* the included cable. It can cause issues with Fastboot.
+
 -  Unlocked Bootloader and Critical Partitions
 
 Unlocking the Bootloader
