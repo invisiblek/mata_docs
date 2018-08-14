@@ -172,7 +172,7 @@ Getting your boot.img:
 - If you are using a custom kernel you may simply use it's .zip instead of the boot.img
 - If you are not on a 'pinned' LOS, or you are using something else you will have to extract your boot.img_.
 
-.. _download: https://updater2.invisiblek.org/mata
+.. _download: https://updater.invisiblek.org/mata
 .. _boot.img: https://gg.gg/mataBTS/
 .. _TWRP: https://gg.gg/9ubmn/
 
