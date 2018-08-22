@@ -73,7 +73,9 @@ Installing LineageOS
 You will need to flash TWRP, the latest can be found here:
 https://gg.gg/9ubmn Flash it to the **boot** partition with fastboot.
 
-invisiblek's Lineage builds can be found here:
+Invisiblek builds unoffical LineageOS images with modifications to make things easier/possible to use on ``mata``. Invisiblek's unofficial builds include both the ``vendor.img`` and the Google Apps built in. These are included to facilitate LineageOS's built in updater.
+
+Invisiblek's Lineage builds can be found here:
 
 http://gg.gg/ai7lc
 
@@ -84,6 +86,8 @@ https://gg.gg/9ubmz
 
 **Note:** If you are changing roms you likely broke encryption and
 *will* bootloop until you ``fastboot -w``
+
+**Note2** Invisiblek's builds, because they are unofficial, are modified to pull OTA files from his personal server. Once official builds are released you will have to manually flash the official builds if you wish to receive official updates. A wipe may be required for this.
 
 Common Issues
 =============
@@ -169,7 +173,7 @@ Getting your boot.img:
 - If you are using a custom kernel you may simply use it's .zip instead of the boot.img
 - If you are not on a 'pinned' LOS, or you are using something else you will have to extract your boot.img_.
 
-.. _download: https://updater2.invisiblek.org/mata/
+.. _download: https://updater2.invisiblek.org/mata
 .. _boot.img: https://gg.gg/mataBTS/
 .. _TWRP: https://gg.gg/9ubmn/
 
@@ -224,7 +228,7 @@ There is a tutorial on xda here: http://gg.gg/mataBTS
 Hidden features
 ===============
 
-Invisiblek's Los has some hidden customizations that are made available through adb commands.
+Invisiblek's Los has some hidden customizations that were not mentioned earlier. These are made available through adb commands.
 
 Add columns to QuickSettings
 ----------------------------
