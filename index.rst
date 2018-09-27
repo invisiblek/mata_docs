@@ -140,6 +140,18 @@ sideload mode via an adb command:
  ``adb shell twrp sideload`` then flash your zip using adb sideload:
  ``adb sideload myawesomezip.zip``
 
+No Touch when moving from 8/2018 -> 9/2018 Pie builds
+-----------------------------------------------------
+
+Read this post_. 
+
+TL;DR: Basically essential updated two firmware files ``byp`` and ``rpm``. These two images were left out of the September ``fastboot.zip`` and the older versions from August 2018 and prior are incompatible September going forward.
+
+Simply ``fastboot flash`` both of these images to the ``byp`` and ``rpm`` partitions respectively.
+
+.. _post: https://www.reddit.com/r/essential/comments/9d3kru/the_september_update_twrp_and_touch/
+
+
 Broken Crypto
 -------------
 
